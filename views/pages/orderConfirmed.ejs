@@ -1,0 +1,27 @@
+<%- include('../partials/headerorder') %>
+
+<!-- CONTAINER DIV.  -->
+<div class="container">
+    <div class='orderConfirmed'>
+        Thank you for placing your order:
+    </div>
+    <div class="clientInfo">
+        <div class="details">Your order details:</div>
+        <div class="name"> <%= name%> </div>
+        <div class="email"><%= email %> </div>
+        <div class="address"><%= address %> </div>
+        <div class="details">Order placed on:</div>
+
+        <div class="date"><%= date %> </div>
+
+        <div class="details">Order Summary:</div>
+        <div><%= order %></div>
+        <img class='image' src=<%=image %>>
+
+
+    </div>
+
+</div>
+
+
+<%- include('../partials/footer') %>

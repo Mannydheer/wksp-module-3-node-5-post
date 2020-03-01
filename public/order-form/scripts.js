@@ -23,6 +23,11 @@ const city = document.getElementById('city');
 const province = document.getElementById('province');
 const postcode = document.getElementById('postcode');
 const country = document.getElementById('country');
+const shirtSize = document.getElementById('size')
+//ASK WHY!!!
+console.log(shirtSize)
+
+
 
 const updateForm = () => {
     const sel = document.getElementById('order').value;
@@ -35,20 +40,23 @@ const updateForm = () => {
 }
 
 const handleToggleErrorMessage = (errorStatus) => {
-
 }
 
+
+
 const handleSubmit = (event) => {
+    const shirtSize = document.getElementById('size')
+
     event.preventDefault();
 
     submitButton.disabled = true;
 
     const data = {
         order: order.value,
-        size: size.value,
+        size: shirtSize.value,
         givenName: givenName.value,
         surname: surname.value,
-        email: email,
+        email: email.value,
         address: address.value,
         city: city.value,
         province: province.value,
@@ -56,7 +64,9 @@ const handleSubmit = (event) => {
         country: country.value
     };
 
-    fetch(`${serverUrl}/order`, {
+//make this enpoints. 
+//ask for what it means in class.
+    fetch('/order', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
@@ -65,14 +75,30 @@ const handleSubmit = (event) => {
         }
     })
     .then(res => res.json())
+    
     .then(data => {
         const { status, error } = data;
-        if (status === 'success') {
-            window.location.href = '/order-confirmed';
-        } else if (data.error) {
-            submitButton.disabled = false;
-            errorMsg.style.display = 'flex';
-            errorMsg.innerText = error;
-        }
+        // console.log(status)
+        // console.log(data.status, 'here i am')
+    if (status === 'success') {
+        // console.log('ORDER COMPLETED')
+        //DOUBLE CHECK THIS FOR ORDER CONFIRMATION
+
+      
+            window.location.href = '/order-confirmed'
+            
+
+          
+        
+    } else if (error) {
+        submitButton.disabled = false;
+        errorMsg.style.display = 'flex';
+        errorMsg.innerText = error;
+    } 
+ 
     });
+
+
+
+
 }
