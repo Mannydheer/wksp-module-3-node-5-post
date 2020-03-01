@@ -44,7 +44,7 @@ const handleformData = (req, res) => {
             // return res.json({status: "success"})
         }
     });
-
+    
 
     // 
     //IF NOT FROM CANADA. 
@@ -52,7 +52,7 @@ const handleformData = (req, res) => {
         status = 650;
 
         //if he is from Canada.... meaning he will be able to buy.
-    } else if (receivedData.order === 'bottleks') {
+    }  else if (receivedData.order === 'bottleks') {
         //must put ==, as it is a string
         if (stock.bottles == 0) {
             status = 450;
@@ -67,7 +67,6 @@ const handleformData = (req, res) => {
         switch (shirtPicked) {
             case 'small':
                 if (stock.shirt.small == 0) {
-                    console.log('small')
                     status = 450;
                 }
                 break;
@@ -76,19 +75,30 @@ const handleformData = (req, res) => {
             case 'medium':
                 if (stock.shirt.medium == 0) {
                     status = 450;
-                    break;
+                break;
                 }
-                case 'large':
-                    if (stock.shirt.large == 0) {
+            case 'large':
+                if (stock.shirt.large == 0) {
                         status = 450;
-                    }
-                    break;
-                case 'xlarge':
-                    if (stock.shirt.xlarge == 0) {
+                }
+                break;
+            case 'xlarge':
+                if (stock.shirt.xlarge == 0) {
                         status = 450;
-                    }
+                }
+                break;
+                //this for missing information for the size of tshirt.  
+            case 'undefined':
+                status = 406;
+                 break;
+
         }
     }
+    //missing information of the order. 
+    else if (receivedData.order === 'undefined') {
+        status = 406;
+    }
+
     //ALL THE STATUS MESASAGES. 
     switch (status) {
         case 550:
@@ -110,11 +120,20 @@ const handleformData = (req, res) => {
             })
             break;
         case 450:
+            console.log(status)
+
             res.status(450).json({
                 status: '450',
                 error: "ITEM NOT IN STOCK!"
             })
-
+            break;
+        //MISSING INFORMATION!
+        case 406: //not acceptable code. 
+            console.log(status)
+            res.status(406).json({
+                status: 406,
+                error: "Missing Information!"
+            })
         default:
             // code block
     }
@@ -123,18 +142,18 @@ const handleformData = (req, res) => {
 
 // HANDLE THE ORDER confirmation
 const handleOrder = (req, res) => {
-let orderType = receivedData.order
-let image;
+    let orderType = receivedData.order
+    let image;
     switch (orderType) {
         case 'socks':
-        image = '/order-form/assets/socks.jpg'           
-        break;
+            image = '/order-form/assets/socks.jpg'
+            break;
         case 'shirt':
-        image = '/order-form/assets/tshirt.png'
-        break;
+            image = '/order-form/assets/tshirt.png'
+            break;
         case 'bottleks':
-        image = '/order-form/assets/bottle.png'
-        break;
+            image = '/order-form/assets/bottle.png'
+            break;
 
     }
 
