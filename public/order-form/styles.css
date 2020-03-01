@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins|Rubik&display=swap');
 
 /* CSS RESET */
-html, body, ul, li, a, p {
+html,
+body,
+ul,
+li,
+a,
+p {
     margin: 0;
     padding: 0;
 }
@@ -23,6 +28,7 @@ body {
     width: 400px;
     height: 800px;
 }
+
 .order-image {
     background: url(./assets/question.jpg) no-repeat center;
     background-size: cover;
@@ -39,11 +45,13 @@ form {
     margin: 0 16px 0;
     padding-top: 34px;
 }
+
 h1 {
     color: #B1BBC7;
     font-family: 'Rubik', Arial, Helvetica, sans-serif;
     font-size: 16px;
 }
+
 h2 {
     color: #373352;
     font-family: 'Rubik', Arial, Helvetica, sans-serif;
@@ -56,6 +64,7 @@ h2 {
     justify-content: space-between;
     width: 100%;
 }
+
 .form-group.radio {
     flex-direction: column;
     margin-bottom: 8px;
@@ -69,6 +78,7 @@ h2 {
 .form-group .form-item:first-child {
     margin-right: 6px;
 }
+
 .form-item {
     margin-bottom: 6px;
     width: 100%;
@@ -106,6 +116,7 @@ h2 {
     display: block;
     margin-right: 10px;
 }
+
 .form-item.sizing select {
     font-family: 'Rubik', Arial, Helvetica, sans-serif;
     width: 120px;
@@ -121,6 +132,7 @@ h2 {
     padding: 0 0 0 12px;
     width: calc(100% - 52px);
 }
+
 .page-two .order-display {
     margin-top: -22px;
 }
@@ -173,6 +185,7 @@ h2 {
     height: 80px;
     top: -21px;
 }
+
 .lds-ripple div {
     position: absolute;
     border: 4px solid #fff;
@@ -180,9 +193,11 @@ h2 {
     border-radius: 50%;
     animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
+
 .lds-ripple div:nth-child(2) {
     animation-delay: -0.5s;
 }
+
 @keyframes lds-ripple {
     0% {
         top: 36px;
@@ -191,6 +206,7 @@ h2 {
         height: 0;
         opacity: 1;
     }
+
     100% {
         top: 0px;
         left: 0px;
@@ -208,6 +224,7 @@ h2 {
 .confirm-button:disabled .button-label {
     display: none;
 }
+
 .confirm-button:disabled .lds-ripple {
     display: inline-block;
 }
@@ -223,3 +240,12 @@ h2 {
     color: red;
     font-size: 14px;
 }
+
+/* ORDER FORM */
+
+.orderConfirmed {
+    font-family: 'Poppins';
+    font-size: 30px;
+
+}
+
